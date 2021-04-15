@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('products');
         Storage::makeDirectory('products');
 
+        $this->call(RoleSeeder::class);
+
         $this->call(UserSeeder::class);
         Category::factory(4)->create();
         $this->call(ProductSeeder::class);

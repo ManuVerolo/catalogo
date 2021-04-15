@@ -3,7 +3,9 @@
 @section('title', 'Catalogo')
 
 @section('content_header')
-    <a class="btn btn-success btn-sm float-right" href="{{route('admin.products.create')}}">Nuevo Producto</a>
+    @can('admin.products.create')
+        <a class="btn btn-success btn-sm float-right" href="{{route('admin.products.create')}}">Nuevo Producto</a>    
+    @endcan
     <h1>Lista de productos</h1>
 @stop
 

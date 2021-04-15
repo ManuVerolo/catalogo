@@ -21,9 +21,12 @@
                             <td>{{$product->name}}</td>
                             <td>${{$product->precio}}</td>
                             <td><img class="mx-auto" width="100px" src="@if($product->image) {{Storage::url($product->image->url)}} @else https://cdn.pixabay.com/photo/2018/01/04/15/51/404-error-3060993_960_720.png @endif"></td>
-                            <td with="10px">
-                                <a class="btn btn-primary btn-sm"href="{{route('admin.products.edit', $product)}}">Editar</a>
-                            </td>
+                            @can('admin.products.edit')
+                                <td with="10px">
+                                    <a class="btn btn-primary btn-sm"href="{{route('admin.products.edit', $product)}}">Editar</a>
+                                </td>
+                            @endcan
+                            @can('admin.products.destroy', Model::class)
                             <td with="10px">
                                 <form action="{{route('admin.products.destroy', $product)}}" method="post">
                                     @csrf
@@ -31,6 +34,7 @@
                                     <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
                                 </form>
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>
